@@ -10,4 +10,5 @@ add_executable(${PROJECT_NAME} src/main.c src/glad.c)
 
 target_include_directories(${PROJECT_NAME} PRIVATE include/ include/glfw/include/)
 target_link_directories(${PROJECT_NAME} PRIVATE libs/)
-target_link_libraries(${PROJECT_NAME} PRIVATE opengl32.lib libglfw3.a)
+add_subdirectory(src/GLTools)
+target_link_libraries(${PROJECT_NAME} PRIVATE opengl32.lib libglfw3.a GLTools)
