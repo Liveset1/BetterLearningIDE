@@ -1,0 +1,1 @@
+start ./bin/BetterLearningIDE.exe
