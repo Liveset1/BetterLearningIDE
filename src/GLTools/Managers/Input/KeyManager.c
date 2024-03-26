@@ -1,6 +1,6 @@
 #include "KeyManager.h"
 
-#include "../GLTools.h"
+#include "../../GLTools.h"
 
 #define MAX_KEY_INPUTS 348
 

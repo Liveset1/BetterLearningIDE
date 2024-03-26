@@ -1,7 +1,7 @@
 #include "GLTools.h"
 
 #include "helper.h"
-#include "Managers/KeyManager.h"
+#include "Managers/Input/KeyManager.h"
 
 typedef struct GLToolsHandle
 {
@@ -121,29 +121,44 @@ GLToolsInfo init_gltools(GLToolsHandle *handle) {
 }
 
 int should_window_close(GLToolsHandle *handle) {
-    return glfwWindowShouldClose(handle->window);
+    if (handle) {
+        return glfwWindowShouldClose(handle->window);
+    }
+    return 0;
 }
 
 void GLTools_SwapBuffers(GLToolsHandle *handle) {
-    glfwSwapBuffers(handle->window);
+    if (handle) {
+        glfwSwapBuffers(handle->window);
+    }
 }
 
 void destroy_handle(GLToolsHandle *handle) {
     if (handle) {
+        free(handle->keyManager);
         free(handle);
     }
 }
 
 char * get_error_message(GLToolsHandle *handle) {
-    return handle->err_msg;
+    if (handle) {
+        return handle->err_msg;
+    }
+    return "Handle is missing; Could not retrieve error message!";
 }
 
 GLFWwindow *get_glfw_window(GLToolsHandle *handle) {
-    return handle->window;
+    if (handle) {
+        return handle->window;
+    }
+    return NULL;
 }
 
 KeyManager *get_key_manager(GLToolsHandle *handle) {
-    return handle->keyManager;
+    if (handle) {
+        return handle->keyManager;
+    }
+    return NULL;
 }
 
 // ============================================================================

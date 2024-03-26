@@ -11,7 +11,6 @@ typedef enum KeyState
 } KeyState;
 
 void glfw_key_callback(KeyManager *keyManager, int keyId, int keyState);
-
 KeyState get_key_state(GLToolsHandle *handle, int keyId);
 KeyState is_key_pressed(GLToolsHandle *handle, int keyId);
 KeyState is_key_released(GLToolsHandle *handle, int keyId);

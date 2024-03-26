@@ -6,6 +6,7 @@
 
 #include <GLTools/helper.h>
 #include <GLTools/GLTools.h>
+#include <GLTools/Managers/Input/KeyManager.h>
 
 int main(void)
 {
@@ -21,23 +22,31 @@ int main(void)
         glClearColor(0.5, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glPushMatrix();
+
+        if (is_key_pressed(handle, GLFW_KEY_B) == Key_Pressed) {
+            glRotatef(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+
         glBegin(GL_TRIANGLES);
             glColor3f(1.0f, 0.0f, 0.0f);   glVertex2f(0.0f,   1.0f);
             glColor3f(0.0f, 1.0f, 0.0f);   glVertex2f(0.87f,  -0.5f);
             glColor3f(0.0f, 0.0f, 1.0f);   glVertex2f(-0.87f, -0.5f);
         glEnd();
+
+        glPopMatrix();
         /* Swap front and back buffers */
         GLTools_SwapBuffers(handle);
 
         /* Poll for and process events */
         glfwPollEvents();
     }
-    
+
     // Free Handle and Terminate GLFW
     glfwTerminate();
     destroy_handle(handle);
 
-    system("pause");
+    getchar();
 
     return 0;
 }
